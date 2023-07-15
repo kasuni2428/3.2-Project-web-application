@@ -33,6 +33,9 @@ router.post("/create-user", upload.single("file"), async (req, res, next) => {
     avatar: "fileUrl",
   };
 
+
+const activationToken = createActivationToken(user);
+
   console.log(user);
   const newUser = await User.create(user);
   res.status(201).json({
@@ -40,5 +43,8 @@ router.post("/create-user", upload.single("file"), async (req, res, next) => {
     newUser,
   });
 });
+
+//create activation token
+
 
 module.exports = router;
